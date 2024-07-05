@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+ zaphonstore:
+  container_name: 'zaphonstore'
+  image: postgres:14.1-alpine
+  environment:
+   POSTGRES_USER: postgres
+   POSTGRES_PASSWORD: 1234
+   POSTGRES_DB: postgres
+  volumes:
+   - ./data:/var/lib/postgresql/data
+  ports:
+   - '5432:5432'
