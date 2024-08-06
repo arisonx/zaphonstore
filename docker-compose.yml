@@ -1,7 +1,7 @@
-version: '3.9'
+version: "4"
 services:
  zaphonstore:
-  container_name: 'zaphonstore'
+  container_name: "zaphonstore"
   image: postgres:14.1-alpine
   environment:
    POSTGRES_USER: postgres
@@ -10,4 +10,4 @@ services:
   volumes:
    - ./data:/var/lib/postgresql/data
   ports:
-   - '5432:5432'
+   - "5432:5432"
