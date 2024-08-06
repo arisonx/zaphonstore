@@ -7,24 +7,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Category {
-  id   String @id @default(uuid())
-  name String 
+  id       String     @id @default(uuid())
+  name     String
   products Products[]
+
   @@map("categories")
 }
 
 model Products {
-  id           String @id @default(uuid())
-  name         String 
-  stock        Int
-  price_reals  Int
-  prince_cents Int?
-  discount     Int?
-  image_url    String
-  sold_off Boolean
-  category Category @relation(fields: [category_id], references: [id], onDelete:Cascade)
+  id          String   @id @default(uuid())
+  name        String
+  stock       Int
+  price_reals Int
+  price_cents Int?
+  discount    Int?
+  image_key   String?
+  image_url   String?
+  sold_off    Boolean
+  category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
   category_id String
+
   @@map("products")
 }

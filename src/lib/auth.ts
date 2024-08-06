@@ -2,39 +2,39 @@ import { AuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import { cookies } from "next/headers";
 export const authOptions: AuthOptions = {
-  providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
-    }),
-  ],
-  session: {
-    maxAge: 30 * 24 * 60 * 60, // 30 days,
-    strategy: "jwt",
+ providers: [
+  GithubProvider({
+   clientId: process.env.GITHUB_ID as string,
+   clientSecret: process.env.GITHUB_SECRET as string,
+  }),
+ ],
+ session: {
+  maxAge: 30 * 24 * 60 * 60, // 30 days,
+  strategy: "jwt",
+ },
+ jwt: {
+  maxAge: 30 * 24 * 60 * 60, // 30 days,$
+ },
+ cookies: {
+  sessionToken: {
+   name: "session",
+   options: {
+    httpOnly: true,
+    sameSite: "lax",
+    path: "/",
+    secure: true,
+   },
   },
-  jwt: {
-    maxAge: 30 * 24 * 60 * 60, // 30 days,$
-  },
-  cookies: {
-    sessionToken: {
-      name: "session",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: true,
-      },
-    },
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: "/auth",
-    error: "/auth",
-  },
+ },
+ secret: process.env.NEXTAUTH_SECRET,
+ pages: {
+  signIn: "/auth",
+  error: "/auth",
+ },
 
-  events: {
-    signOut() {
-      cookies().delete("session");
-    },
+ events: {
+  signOut() {
+   cookies().delete("session");
   },
+ },
 };
