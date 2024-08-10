@@ -6,7 +6,7 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { randomUUID } from "node:crypto";
 
 export type CreateProductResponse = {
- sucess: boolean;
+    success: boolean;
  error: {
   message: string | null;
  };
@@ -51,7 +51,7 @@ export const createProduct = async (
 
   if (!file) {
    return {
-    sucess: false,
+    success: false,
     error: {
      message: "Por favor, escolha um arquivo para o produto",
     },
@@ -62,7 +62,7 @@ export const createProduct = async (
 
   if (!productSafed.success) {
    return {
-    sucess: false,
+    success: false,
     error: {
      message: productSafed.error.message,
     },
@@ -126,7 +126,7 @@ export const createProduct = async (
   });
 
   return {
-   sucess: true,
+    success: true,
    error: {
     message: null,
    },
@@ -134,7 +134,7 @@ export const createProduct = async (
  } catch (e) {
   console.error(e);
   return {
-   sucess: false,
+    success: false,
    error: {
     message: "Ocorreu um erro ao salvar o produto. Tente novamente em alguns minutos!",
    },

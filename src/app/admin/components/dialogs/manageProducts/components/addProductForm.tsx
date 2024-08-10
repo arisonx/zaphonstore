@@ -29,6 +29,7 @@ import { productSchema } from "@/@types/schemas/addProductSchema";
 import { useToast } from "@/components/ui/use-toast";
 import { createProduct, CreateProductResponse } from "@/app/actions/products/createProduct";
 import Link from "next/link";
+import { RefreshProductAction } from "@/app/actions/products/refreshProducts";
 
 interface AddProductFormData {
  categories: CategoryType[] | null | undefined;
@@ -71,7 +72,7 @@ export function AddProductForm({ categories }: AddProductFormData) {
     formData
    );
 
-   if (!productResponse.sucess) {
+   if (!productResponse.success) {
     toast({
      title: "Falha ao Criar Produto",
      description: productResponse.error.message,
@@ -82,6 +83,7 @@ export function AddProductForm({ categories }: AddProductFormData) {
     return;
    }
 
+   RefreshProductAction({ path: "admin" });
    form.reset();
 
    toast({
@@ -111,7 +113,7 @@ export function AddProductForm({ categories }: AddProductFormData) {
         <Select onValueChange={field.onChange} defaultValue={field.value}>
          <FormControl className='w-full rounded-md border-2 py-6'>
           <SelectTrigger>
-           <SelectValue placeholder='selecione'/>
+           <SelectValue placeholder='selecione' />
           </SelectTrigger>
          </FormControl>
          <SelectContent>
@@ -171,7 +173,7 @@ export function AddProductForm({ categories }: AddProductFormData) {
        <FormItem>
         <FormLabel>Preço do produto em Centavos</FormLabel>
         <FormControl>
-         <Input placeholder='$' {...field} type='number' className='p-6 border-2' />
+         <Input placeholder='$' {...field} type='number' className='border-2 p-6' />
         </FormControl>
         <FormMessage />
        </FormItem>
@@ -185,7 +187,12 @@ export function AddProductForm({ categories }: AddProductFormData) {
        <FormItem>
         <FormLabel>Desconto</FormLabel>
         <FormControl>
-         <Input type='number' placeholder='%' {...field} className='p-6 border-2 focus:outline-[1px]' />
+         <Input
+          type='number'
+          placeholder='%'
+          {...field}
+          className='border-2 p-6 focus:outline-[1px]'
+         />
         </FormControl>
         <FormMessage />
        </FormItem>
