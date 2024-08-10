@@ -43,7 +43,7 @@ export async function Products() {
                <span>{"R$ " + item.price_reals + "," + item.price_cents}</span>
               )}
 
-              <span className='e text-sm font-medium text-green-700'>-{item.discount}%</span>
+              <span className='e text-sm font-medium text-green-700'>{item.discount}%</span>
              </p>
              <p style={inter.style} className='text-sm text-gray-300'>
               Estoque: {item.stock}
