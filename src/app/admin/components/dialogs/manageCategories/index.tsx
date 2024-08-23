@@ -12,10 +12,9 @@ import { PackageSearch } from "lucide-react";
 import { DataTable } from "./components/datatable";
 interface IRemoveProductDialog {
  categories: CategoryType[] | undefined | null;
- products: ProductType[];
 }
 
-export async function ManageCategoriesDialog({ categories, products }: IRemoveProductDialog) {
+export async function ManageCategoriesDialog({ categories }: IRemoveProductDialog) {
  return (
   <Dialog>
    <DialogTrigger className='w-[20rem] rounded-lg bg-slate-900 py-6 text-white'>
