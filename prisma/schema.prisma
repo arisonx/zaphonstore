@@ -18,7 +18,6 @@ model Category {
 model Products {
   id          String   @id @default(uuid())
   name        String
-  stock       Int
   price_reals Int
   price_cents Int?
   discount    Int?
@@ -27,6 +26,16 @@ model Products {
   sold_off    Boolean
   category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
   category_id String
+  stocks      Stock[]
 
   @@map("products")
+}
+
+model Stock {
+  id         String   @id @default(uuid())
+  content    String
+  product    Products @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  product_id String
+
+  @@map("stocks")
 }
