@@ -72,17 +72,17 @@ export function EditProductDialogForm({ categories, row }: IEditProductDialogFor
  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
  const categoryMap = new Map(categories.map(cat => [cat.id, cat.name]));
- const currentCategory = categoryMap.get(row.original.category_id);
+ const currentCategory = categoryMap.get(row.original.category_id as string);
 
  const form = useForm<z.infer<typeof productSchema>>({
   resolver: zodResolver(productSchema),
   defaultValues: {
-   category_id: row.original.category_id,
+   category_id: row.original.category_id as string,
    name: row.original.name,
    price_cents: row.original.price_cents?.toString(),
    price_reals: row.original.price_reals?.toString(),
    discount: row.original.discount?.toString(),
-   stock: row.original.stock?.toString(),
+   stock: row.original.stock_count?.toString(),
    sold_off: row.original.sold_off,
    file: undefined,
   },
@@ -111,14 +111,13 @@ export function EditProductDialogForm({ categories, row }: IEditProductDialogFor
      name: data.name,
      price_cents: parseInt(data.price_cents),
      price_reals: parseInt(data.price_reals),
-     stock: parseInt(data.stock),
+     stock_count: parseInt(data.stock),
      sold_off: data.sold_off,
      id: row.original.id,
     });
 
-    console.log(productUpdateResponse.sucess);
 
-    if (!productUpdateResponse.sucess) {
+    if (!productUpdateResponse.success) {
      toast({
       title: "Falha ao atualizar o produto",
       description: productUpdateResponse.error.message,
@@ -160,13 +159,13 @@ export function EditProductDialogForm({ categories, row }: IEditProductDialogFor
      name: data.name,
      price_cents: parseInt(data.price_cents),
      price_reals: parseInt(data.price_reals),
-     stock: parseInt(data.stock),
+     stock_count: parseInt(data.stock),
      sold_off: data.sold_off,
     },
     formData
    );
 
-   if (!productUpdateResponse.sucess) {
+   if (!productUpdateResponse.success) {
     toast({
      title: "Falha ao atualizar produto!",
      description: productUpdateResponse.error.message,
