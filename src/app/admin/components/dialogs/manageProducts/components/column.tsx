@@ -82,11 +82,11 @@ export const Columns = ({ categories }: TableProps) => {
     );
    },
    cell: ({ row }) => {
-    const categoryName = categoryMap.get(row.original.category_id);
+    const categoryName = categoryMap.get(row.original.category_id as string);
     return <div className='lowercase'>{categoryName}</div>;
    },
    filterFn: (row, _, value) => {
-    const cellValue = categoryMap.get(row.original.category_id);
+    const cellValue = categoryMap.get(row.original.category_id as string );
     return cellValue ? cellValue.toLowerCase().includes(value.toLowerCase()) : false;
    },
    enableSorting: true,
