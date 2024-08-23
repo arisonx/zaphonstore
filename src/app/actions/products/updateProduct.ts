@@ -6,7 +6,7 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { randomUUID } from "node:crypto";
 
 export type UpdateProductResponse = {
- sucess: boolean;
+ success: boolean;
  error: {
   message: string | null;
  };
@@ -31,7 +31,7 @@ const productSchemaActionSchema = z.object({
  price_reals: z.number().optional(),
  price_cents: z.number().optional(),
  discount: z.number().optional(),
- stock: z.number().optional(),
+ stock_count: z.number().optional(),
  sold_off: z.boolean().optional(),
 });
 
@@ -57,7 +57,7 @@ export const UpdateProduct = async (
 
   if (!productSafed.success) {
    return {
-    sucess: false,
+    success: false,
     error: {
      message: productSafed.error.message,
     },
@@ -69,7 +69,7 @@ export const UpdateProduct = async (
    const body: ProductType = {
     category_id: productSafed.data?.category_id as string,
     name: productSafed.data?.name as string,
-    stock: productSafed.data?.stock as number,
+    stock_count: productSafed.data?.stock_count as number,
     price_reals: productSafed.data?.price_reals as number,
     price_cents: productSafed.data?.price_cents as number,
     discount: productSafed.data?.discount as number,
@@ -87,7 +87,7 @@ export const UpdateProduct = async (
 
    if (update.status !== 200) {
     return {
-     sucess: false,
+        success: false,
      error: {
       message: "Falha ao atualizar o produto",
      },
@@ -95,7 +95,7 @@ export const UpdateProduct = async (
    }
 
    return {
-    sucess: true,
+    success: true,
     error: {
      message: null,
     },
@@ -143,7 +143,7 @@ export const UpdateProduct = async (
   const body: ProductType = {
    category_id: productSafed.data?.category_id as string,
    name: productSafed.data?.name as string,
-   stock: productSafed.data?.stock as number,
+   stock_count: productSafed.data?.stock_count as number,
    price_reals: productSafed.data?.price_reals as number,
    price_cents: productSafed.data?.price_cents as number,
    discount: productSafed.data?.discount as number,
@@ -162,14 +162,14 @@ export const UpdateProduct = async (
   });
 
   return {
-   sucess: true,
+    success: true,
    error: {
     message: null,
    },
   };
  } catch (err) {
   return {
-   sucess: false,
+    success: false,
    error: {
     message: "Ocorreu um erro ao atualizar o produto. Tente novamente em alguns minutos!",
    },
