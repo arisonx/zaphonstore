@@ -16,7 +16,7 @@ export class ProductsGateway implements IActionsTipeProductComponent {
   try {
    const productExists = await prismaclient.products.findFirst({
     where: {
-     name: productData.name,
+     id: productData.id,
     },
    });
 
@@ -28,7 +28,7 @@ export class ProductsGateway implements IActionsTipeProductComponent {
     data: {
      image_url: productData.image_url as string,
      name: productData.name as string,
-     stock: productData.stock as number,
+     stock_count: productData.stock_count as number,
      price_reals: productData.price_reals as number,
      price_cents: productData.price_cents as number,
      discount: productData.discount as number,
@@ -39,7 +39,8 @@ export class ProductsGateway implements IActionsTipeProductComponent {
    });
 
    return product;
-  } catch (errr) {
+  } catch (err) {
+   console.log(err);
    return null;
   }
  }
@@ -78,12 +79,12 @@ export class ProductsGateway implements IActionsTipeProductComponent {
     },
     data: {
      name: product.name,
-     stock: product.stock as number,
+     stock_count: product.stock_count as number,
      price_reals: product.price_reals as number,
      price_cents: product.price_cents as number,
      discount: product.discount,
      sold_off: product.sold_off,
-     category_id: product.category_id,
+     category_id: product.category_id as string,
      image_url: product.image_url as string,
      image_key: product.image_key as string,
     },
