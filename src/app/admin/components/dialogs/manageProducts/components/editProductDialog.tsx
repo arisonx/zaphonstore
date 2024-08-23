@@ -20,7 +20,7 @@ export function EditProductDialog({ categories, row }: IEditProductDialog) {
    <DialogHeader>
     <DialogTitle>Editar Produto</DialogTitle>
     <DialogDescription>
-     Fique ciente que após qualquer alteração não será possível desfazê-las!
+     Fique ciente que após qualquer alteração, não será possível desfazê-las!
     </DialogDescription>
    </DialogHeader>
    <EditProductDialogForm categories={categories} row={row} />

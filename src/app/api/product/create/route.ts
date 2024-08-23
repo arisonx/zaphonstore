@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   price_reals: z.number(),
   price_cents: z.number(),
   discount: z.number(),
-  stock: z.number(),
+  stock_count: z.number(),
   sold_off: z.boolean(),
   image_key: z.string(),
   image_url: z.string(),

@@ -46,7 +46,7 @@ export async function Products() {
               <span className='e text-sm font-medium text-green-700'>{item.discount}%</span>
              </p>
              <p style={inter.style} className='text-sm text-gray-300'>
-              Estoque: {item.stock}
+              Estoque: {item.stock_count}
              </p>
             </div>
            </div>

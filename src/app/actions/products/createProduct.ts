@@ -27,7 +27,7 @@ const productSchemaActionSchema = z.object({
  price_reals: z.number(),
  price_cents: z.number(),
  discount: z.number(),
- stock: z.number(),
+ stock_count: z.number(),
  sold_off: z.boolean(),
 });
 
@@ -108,7 +108,7 @@ export const createProduct = async (
   const body: ProductType = {
    category_id: productSafed.data?.category_id as string,
    name: productSafed.data?.name as string,
-   stock: productSafed.data?.stock as number,
+   stock_count: productSafed.data?.stock_count as number,
    price_reals: productSafed.data?.price_reals as number,
    price_cents: productSafed.data?.price_cents as number,
    discount: productSafed.data?.discount as number,
@@ -132,7 +132,7 @@ export const createProduct = async (
    },
   };
  } catch (e) {
-  console.error(e);
+
   return {
     success: false,
    error: {

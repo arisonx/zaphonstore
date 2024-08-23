@@ -47,7 +47,7 @@ export function AddProductForm({ categories }: AddProductFormData) {
    price_reals: 0,
    price_cents: 0,
    discount: 0,
-   stock: 0,
+   stock_count: 0,
    sold_off: false,
    category_id: "",
    file: undefined,
@@ -66,7 +66,7 @@ export function AddProductForm({ categories }: AddProductFormData) {
      name: data.name,
      price_cents: data.price_cents,
      price_reals: data.price_reals,
-     stock: data.stock,
+     stock_count: data.stock_count,
      sold_off: data.sold_off,
     },
     formData
@@ -215,7 +215,7 @@ export function AddProductForm({ categories }: AddProductFormData) {
 
      <FormField
       control={form.control}
-      name='stock'
+      name='stock_count'
       render={({ field }) => (
        <FormItem>
         <FormLabel>Estoque</FormLabel>

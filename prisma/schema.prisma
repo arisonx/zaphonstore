@@ -18,8 +18,8 @@ model Category {
 model Products {
   id          String   @id @default(uuid())
   name        String
-  stock       Int
   price_reals Int
+  stock_count Int
   price_cents Int?
   discount    Int?
   image_key   String?
@@ -28,5 +28,16 @@ model Products {
   category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
   category_id String
 
+  stock    Stock?  @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+  stock_id String?
+
   @@map("products")
+}
+
+model Stock {
+  id       String     @id @default(uuid())
+  content  String []
+  Products Products[]
+
+  @@map("stocks")
 }

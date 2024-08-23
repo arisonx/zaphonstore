@@ -15,7 +15,7 @@ export const productSchema = z.object({
  price_reals: z.string().transform(v => Number(v) || 0),
  price_cents: z.string().transform(v => Number(v) || 0),
  discount: z.string().transform(v => Number(v) || 0),
- stock: z.string().transform(v => Number(v) || 0),
+ stock_count: z.string().transform(v => Number(v) || 0),
  sold_off: z.boolean(),
  file: z.instanceof(File).refine(file => /\.(webp|png|jpe?g)$/i.test(file.name), {
   message: "O arquivo deve ser uma imagem com as extensões .webp, .png, .jpg, jpeg",
