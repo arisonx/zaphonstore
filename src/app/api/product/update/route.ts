@@ -25,7 +25,7 @@ export async function POST(req: Request) {
    image_url: body.image_url ? body.image_url : (productExists.image_url as string),
    price_cents: body.price_cents ? body.price_cents : (productExists.price_cents as number),
    price_reals: body.price_reals ? body.price_reals : (productExists.price_reals as number),
-   stock: body.stock ? body.stock : (productExists.stock as number),
+   stock_count: body.stock_count ? body.stock_count : (productExists.stock_count as number),
    sold_off: body.sold_off ? body.sold_off : (productExists.sold_off as boolean),
   });
 
